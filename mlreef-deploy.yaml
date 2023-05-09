@@ -15,6 +15,16 @@ spec:
       containers:
       - name: mlreef
         image: registry.gitlab.com/mlreef/mlreef:latest
+        volumeMounts:
+          - name: mlreef-opt
+            mountPath: /var/opt/gitlab
+            subPath: gitlab
+          - name: mlreef-etc
+            mountPath: /etc/gitlab
+            subPath: gitlab
+          - name: mlreefdb-opt
+            mountPath: /var/opt/mlreef
+            subPath: mlreef
         ports:
         - containerPort: 80
           name: http-port
@@ -28,3 +38,13 @@ spec:
           name: mlreef-port
         - containerPort: 6000
           name: mlreef-port
+        volumes:
+          - name: mlreef-opt
+            persistentVolumeClaim:
+              claimName: mlreef-opt-pv-claim
+          - name: mlreef-etc
+            persistentVolumeClaim:
+              claimName: mlreef-etc-pv-claim
+          - name: mlreefdb-opt
+            persistentVolumeClaim:
+              claimName: mlreef-opt-db-claim
