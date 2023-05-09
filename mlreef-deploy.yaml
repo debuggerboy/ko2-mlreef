@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlreef-deployment
+  namespace: ml-reef
+spec:
+  selector:
+    matchLabels:
+      app: ml-reef
+  template:
+    metadata:
+      labels:
+        app: ml-reef
+    spec:
+      containers:
+      - name: mlreef
+        image: registry.gitlab.com/mlreef/mlreef:latest
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 22
+          name: ssh-port
+        - containerPort: 8081
+          name: mlreef-port
+        - containerPort: 5050
+          name: mlreef-port
+        - containerPort: 10080
+          name: mlreef-port
+        - containerPort: 6000
+          name: mlreef-port
