@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mlreef-deployment
-  namespace: ml-reef
 spec:
   selector:
     matchLabels:
