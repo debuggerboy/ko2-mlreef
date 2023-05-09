@@ -37,7 +37,7 @@ spec:
           name: mlreef-port
         - containerPort: 6000
           name: mlreef-port
-        volumes:
+  volumes:
           - name: mlreef-opt
             persistentVolumeClaim:
               claimName: mlreef-opt-pv-claim
